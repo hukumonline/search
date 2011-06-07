@@ -1,2 +1,7 @@
 .settings/
 app/configs/
+data/
+library/Apache/
+library/Phpids/
+.buildpath
+.project
