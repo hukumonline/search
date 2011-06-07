@@ -1,0 +1,152 @@
+<div id="page">
+    <div class="wrapper">
+        <section class="column first">
+            <div class="colgroup">
+                <div class="kolom widthcontent1 first">
+                	<a href="<?=ROOT_URL;?>/<?=$this->getLanguage();?>"><img src="<?=$this->cdn('images');?>/logo2.gif" width="250px"></a>
+                    <? if ($this->aData['totalCount'] > 0) { ?>
+                    <?=$this->action('fprofile','widgets_search','dms',array('query'=>$this->query,'ct'=>$this->ct));?>
+                    <?=$this->action('fclinic','widgets_search','dms',array('query'=>$this->query,'ct'=>$this->ct));?>
+                    <?=$this->action('fhold','widgets_search','dms',array('query'=>$this->query,'ct'=>$this->ct));?>
+                    <? } else { ?>
+                    <?=$this->action('terbaru','catalog','dms'); ?>
+                    <? } ?>
+                </div>
+                <div class="kolom widthcontent5">
+                	<div style="padding-top:20px;"></div>
+                    <div class="align-right">
+                        <form id="searchForm" method="post" action="<?=$this->baseUrl();?>/<?=$this->getLanguage();?>/dms/search/result" style="z-index:1;overflow:hidden;">
+                            <input name="submit" value="Telusuri" class="btn btn-blue big" type="submit">
+                            <input size="40" name="keyword" id="keyword" type="text" class="half title" value="<?=$this->layout()->searchQuery;?>">
+                            <select name="category" id="category" style="height:32px;">
+                                <option value="">Pilih:</option>
+                                <option value="article">Artikel</option>
+                                <option value="klinik">Klinik</option>
+                                <option value="(kutu_peraturan OR kutu_peraturan_kolonial OR kutu_rancangan_peraturan OR kutu_putusan)">Peraturan</option>
+                            </select>
+                        </form>
+						<?
+						if ($this->getLanguage() == 'id') {
+						?>
+						<a href="<?=ROOT_URL;?>/en">hukumonline.com in English</a>
+						<?
+						} else {
+						?>
+						<a href="<?=ROOT_URL;?>/id">hukumonline Indonesia</a>
+						<? } ?>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?=ROOT_URL;?>/<?=$this->getLanguage();?>/dms/search/advanced">Pencarian Lanjutan</a>
+                    </div>
+                    <div style="clear:both"></div>
+                    <fieldset>
+                            <legend>Sekitar&nbsp;<b><?=$this->aData['totalCount'];?></b> hasil (<b><?=$this->time;?></b> detik)</legend>
+                            <? if(isset($this->hits->spellcheck->suggestions->collation)) { ?>
+                            <table>
+                            <tr>
+                                <td style="color: #003366;font-size: 12px;">
+                                <form id="searchForm" method="POST" action="<?=$this->baseUrl();?>/cari">
+                                Apa maksudnya : <?=$this->hits->spellcheck->suggestions->collation ?>
+                                <input name="cari" type="hidden" value="<?=$this->hits->spellcheck->suggestions->collation ?>" />
+                                <input value="Ya" class="btn-blue" type="submit" />
+                                </form>
+                                </td>
+                            </tr>
+                            </table>
+                            <? } ?><br>
+                            <? if ($this->aData['totalCount'] > 0) { ?>
+                            <div id='catalogContent'></div><br>
+                            <table>
+                            <tr>
+                                <td width=25%>&nbsp;</td>
+                                <td align="center"><div id='catalogSearchPagination' class="pagination"></div></td>
+                            </tr>
+                            </table>
+                            <? } else { ?>
+                            <div class="ta-center"><h1>.:Data Tidak Ditemukan:.</h1></div>
+                            <? } ?>
+                    </fieldset>
+                </div>
+                <div class="clear">&nbsp;</div>
+            </div>
+            <div class="clear">&nbsp;</div>
+        </section>
+    </div>
+</div>
+
+<script>
+
+$(document).ready(function(){
+
+    var isFirstTime = 1;
+
+    var myPageIndex = 0;
+
+    $("#category").val('<?=$this->layout()->categorySearchQuery; ?>');
+
+    $("#catalogSearchPagination").pagination(<?=$this->aData['totalCount'];?>,
+    {items_per_page:<?=$this->aData['limit'];?>, callback:handlePaginationClick, next_text:'Berikutnya',prev_text:'Sebelumnya'}
+    );
+
+    function handlePaginationClick(new_page_index, pagination_container)
+    {
+        myPageIndex = new_page_index;
+        myStart = (<?=$this->aData['limit'];?> * myPageIndex);
+
+        if(true)
+        {
+            if($('#tblCatalogPager-'+myPageIndex).length==0)
+            {
+                $.getJSON('<?=$this->baseUrl();?>/<?=$this->getLanguage();?>/api/catalog/getcatalogsearch/query/<?=$this->query;?>/ct/<?=$this->ct?>/start/'+myStart+'/limit/<?=$this->aData['limit'];?>', '', searchResult);
+            }
+            else
+                showCatalogContent();
+        }
+        return false;
+    }
+
+    function searchResult(res)
+    {
+        size = res.catalogs.length;
+        var tblRow = "<a name='a-"+myPageIndex+"' ></a>"+'<table width="100%" class="tblCatalogPager" id="tblCatalogPager-'+myPageIndex+'">';
+        tblRow +=
+
+                "<tr valign=top>"
+                +"<td>"
+                +"<div class='td_peraturan5'>"
+                +"<div style='height:auto;'>"
+                +"<div class='searchcontent'>";
+
+        for(i=0;i<size;i++)
+        {
+            tblRow +=
+
+                    res.catalogs[i].subTitle
+                    +res.catalogs[i].title+"&nbsp;&ndash;&nbsp;<abbr>"+res.catalogs[i].profile+"</abbr>"
+                    +"<small>"+res.catalogs[i].description+"</small>"
+                    +"<span class='subtitle'>"+res.catalogs[i].publishedDate+"</span>&nbsp;&ndash;&nbsp;<cite>"+res.catalogs[i].score+"</cite><br><br>";
+        }
+
+        tblRow +=
+
+                "</div>"
+                +"</div>"
+                +"</div>"
+                +"</td>"
+                +"</tr>";
+
+        tblRow += "</table>";
+        $(tblRow).appendTo("#catalogContent");
+        showCatalogContent();
+
+    }
+    function showCatalogContent()
+    {
+        $('.tblCatalogPager').hide();
+        $('#tblCatalogPager-'+myPageIndex).show();
+        if(!isFirstTime)
+                Scroller.scroll();
+        isFirstTime = 0;
+    }
+
+});
+
+</script>

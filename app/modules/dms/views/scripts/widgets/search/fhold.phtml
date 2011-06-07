@@ -1,0 +1,39 @@
+<? if (count($this->aData) > 0) : ?>
+<div class="content-box corners">
+    <header>
+        <h3><img src="<?=$this->cdn('images');?>/information.png" alt="" />Berdasarkan Tipe Peraturan</h3>
+    </header>
+    <section>
+        <form id="frmFcHold" name="frmFcHold" method="post" action="<?=$this->baseUrl();?>/<?=$this->getLanguage();?>/dms/search/result">
+        <table class="no-style full">
+            <tbody>
+                <? for($i=0; $i<count($this->aData);$i++) : ?>
+                <tr>
+                    <td><a href="<?=$this->regulationType($this->aData[$i][0]);?>" id="fcHold"><abbr><?=$this->aData[$i][0];?></abbr></a></td>
+                    <td class="ta-right"><?=$this->aData[$i][1];?></td>
+                </tr>
+                <? endfor; ?>
+            </tbody>
+        </table>
+        <input type="hidden" id="keywordtype" name="keyword" />
+        <input type="hidden" id="ct" name="category" value="(kutu_peraturan OR kutu_peraturan_kolonial OR kutu_rancangan_peraturan OR kutu_putusan)" />
+        </form>
+    </section>
+</div>
+<script>
+$(document).ready(function(){
+    $('#fcHold').live('click', function(){
+        var iId = $(this).attr('href');
+        var qI = '<?=$this->query.' regulationOrder:';?>' + iId;
+        $("#keywordtype").val(qI);
+        $("#frmFcHold").submit();
+
+        return false;
+    });
+
+
+});
+</script>
+
+
+<? endif; ?>

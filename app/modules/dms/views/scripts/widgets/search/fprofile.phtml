@@ -1,0 +1,44 @@
+<? if (count($this->aData) > 0) : ?>
+<div class="content-box corners">
+    <header>
+        <h3><img src="<?=$this->cdn('images');?>/information.png" alt="" />
+        <? if ($this->getLanguage() == "id") { ?>
+        Berdasarkan Kategori
+        <? } else { ?>
+        By Category
+        <? } ?>
+        </h3>
+    </header>
+    <section>
+        <form id="frmFcProfile" name="frmFcProfile" method="post" action="<?=$this->baseUrl();?>/<?=$this->getLanguage();?>/dms/search/result">
+        <table class="no-style full">
+            <tbody>
+                <? for($i=0; $i<count($this->aData);$i++) : ?>
+                <tr>
+                    <td><a href="<?=$this->aData[$i][3];?>" id="fcProfile"><abbr><?=$this->aData[$i][0];?></abbr></a></td>
+                    <td class="ta-right"><?=$this->aData[$i][1];?></td>
+                </tr>
+                <? endfor; ?>
+            </tbody>
+        </table>
+        <input type="hidden" name="keyword" value="<?=$this->query;?>" />
+        <input type="hidden" id="ct" name="category" />
+        </form>
+    </section>
+</div>
+<script>
+$(document).ready(function(){
+    $('#fcProfile').live('click', function(){
+        var iId = $(this).attr('href');
+        $("#ct").val(iId);
+        $("#frmFcProfile").submit();
+
+        return false;
+    });
+
+
+});
+</script>
+
+
+<? endif; ?>

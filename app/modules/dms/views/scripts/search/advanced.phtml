@@ -1,0 +1,211 @@
+<!-- Page content -->
+<div id="page">
+    <div class="wrapper">
+        <section class="column first">
+            <div class="colgroup">
+                <div class="kolom widthcontent1 first">
+                	<a href="<?=ROOT_URL;?>/<?=$this->getLanguage();?>"><img src="<?=$this->cdn('images');?>/logo2.gif" width="250px"></a>
+                	<?=$this->action('terbaru','catalog','dms'); ?>
+                </div>
+                <div class="kolom widthcontent5">
+                    <div class="align-right">
+                        <h3>Pencarian Lanjutan</h3>
+                    </div>
+                    <div style="clear:both"></div>
+                    <form name="f" id="searchForm" method="POST" action="" style="padding:10px;">
+                    <fieldset>
+                        <legend>Tampilkan hasil telusur yang</legend>
+                        <table cellpadding="2" cellspacing="0" width="100%" style="margin-bottom:1.4em;width:100%;font-size:13px;">
+                        <tbody>
+                        <tr>
+                            <td class="psearch"><font size=-1>mengandung <b>seluruh</b> kata berikut</font></td>
+                            <td class="psearch">
+                            <input type=text value="<?=$this->layout()->as_q; ?>" name=as_q size=25>
+                            <script>
+                            <!--
+                            document.f.as_q.focus();
+                            // -->
+                            </script>
+                            </td>
+                            <td class="psearch"><font size=-1><input type=submit name=btnG value="Telusuri" class="btn" style="width:75px;"></font></td>
+                        </tr>
+                        <tr>
+                            <td class="psearch"><font size=-1>mengandung <b>frasa yang persis dengan</b></font></td>
+                            <td class="psearch"><input type=text size=25 value="" name=as_epq></td>
+                        </tr>
+                        <tr>
+                            <td class="psearch"><font size=-1>mengandung paling tidak <b>salah satu</b> kata berikut</font></td>
+                            <td class="psearch"><input type=text size=25 value="" name=as_oq></td>
+                        </tr>
+                        <tr>
+                            <td class="psearch"><font size=-1><b>tak mengandung</b> kata/frasa</font></td>
+                            <td class="psearch"><input type=text size=25 value="" name=as_eq></td>
+                        </tr>
+                        <tr>
+                            <td class="psearch"><font size=-1>Nomor</font></td>
+                            <td class="psearch"><input type=text size=25 value="" name=nomor></td>
+                        </tr>
+                        <tr>
+                            <td class="psearch"><font size=-1>Tahun</font></td>
+                            <td class="psearch"><input type=text size=25 value="" name=tahun></td>
+                        </tr>
+                        </tbody>
+                        </table>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Peraturan</legend>
+                        <table style="margin-bottom:1.4em;width:100%;font-size:13px;">
+                        <tr>
+                            <td class="psearch"><font size=-1><b>Jenis Peraturan</b></font></td>
+                            <td class="psearch">
+                                <font size=-1>
+                                <select name="jenis_peraturan">
+                                <option value=''>-- Pilih --</option>
+                                <option value='1'>Konstitusi</option>
+                                <option value='11'>TAP MPR</option>
+                                <option value='21'>Keputusan MPR</option>
+                                <option value='31'>Undang-Undang</option>
+                                <option value='31'>UU</option>
+                                <option value='41'>Undang-Undang Darurat</option>
+                                <option value='51'>PERPU</option>
+                                <option value='61'>Peraturan Pemerintah</option>
+                                <option value='71'>Peraturan Presiden</option>
+                                <option value='81'>Penetapan Presiden</option>
+                                <option value='91'>Keputusan Presiden</option>
+                                <option value='101'>Instruksi Presiden</option>
+                                <option value='111'>Konvensi Internasional</option>
+                                <option value='121'>Keputusan Bersama</option>
+                                <option value='131'>Keputusan Dewan</option>
+                                <option value='141'>Keputusan Menteri</option>
+                                <option value='151'>Peraturan Menteri</option>
+                                <option value='161'>Instruksi Menteri</option>
+                                <option value='171'>Pengumuman Menteri</option>
+                                <option value='181'>Surat Edaran Menteri</option>
+                                <option value='191'>Surat Menteri</option>
+                                <option value='201'>Keputusan Asisten Menteri</option>
+                                <option value='211'>Surat Asisten Menteri</option>
+                                <option value='221'>Keputusan Menteri Negara/Ketua Lembaga/Badan</option>
+                                <option value='231'>Peraturan Menteri Negara/Ketua Lembaga/Badan</option>
+                                <option value='241'>Instruksi Menteri Negara/Ketua Lembaga/Badan</option>
+                                <option value='251'>Pengumuman Menteri Negara/Ketua Lembaga/Badan</option>
+                                <option value='261'>Surat Edaran Menteri Negara/Ketua Lembaga/Badan</option>
+                                <option value='271'>Surat Menteri Negara/Ketua Lembaga/Badan</option>
+                                <option value='281'>Keputusan Lembaga/Badan</option>
+                                <option value='291'>Peraturan Lembaga/Badan</option>
+                                <option value='301'>Instruksi Lembaga/Badan</option>
+                                <option value='311'>Pengumuman Lembaga/Badan</option>
+                                <option value='321'>Surat Edaran Lembaga/Badan</option>
+                                <option value='331'>Surat Lembaga/Badan</option>
+                                <option value='341'>Keputusan Kepala/Ketua Lembaga/Badan</option>
+                                <option value='351'>Peraturan Kepala/Ketua Lembaga/Badan</option>
+                                <option value='361'>Instruksi Kepala/Ketua Lembaga/Badan</option>
+                                <option value='371'>Pengumuman Kepala/Ketua Lembaga/Badan</option>
+                                <option value='381'>Surat Edaran Kepala/Ketua Lembaga/Badan</option>
+                                <option value='391'>Surat Kepala/Ketua Lembaga/Badan</option>
+                                <option value='401'>Keputusan Komisi</option>
+                                <option value='411'>Peraturan Komisi</option>
+                                <option value='421'>Instruksi Komisi</option>
+                                <option value='431'>Pengumuman Komisi</option>
+                                <option value='441'>Surat Edaran Komisi</option>
+                                <option value='451'>Surat Komisi</option>
+                                <option value='461'>Keputusan Panitia</option>
+                                <option value='471'>Peraturan Panitia</option>
+                                <option value='481'>Instruksi Panitia</option>
+                                <option value='491'>Pengumuman Panitia</option>
+                                <option value='501'>Surat Edaran Panitia</option>
+                                <option value='511'>Surat Panitia</option>
+                                <option value='521'>Keputusan Direktur Jenderal</option>
+                                <option value='531'>Surat Edaran Direktur Jenderal</option>
+                                <option value='541'>Surat Direktur Jenderal</option>
+                                <option value='551'>Instruksi Direktur Jenderal</option>
+                                <option value='561'>Peraturan Direktur Jenderal</option>
+                                <option value='571'>Peraturan Inspektur Jenderal</option>
+                                <option value='581'>Instruksi Inspektur Jenderal</option>
+                                <option value='591'>Pengumuman Inspektur Jenderal</option>
+                                <option value='601'>Surat Edaran Inspektur Jenderal</option>
+                                <option value='611'>Surat Inspektur Jenderal</option>
+                                <option value='621'>Peraturan Daerah Tingkat I</option>
+                                <option value='631'>Peraturan Daerah Tingkat II</option>
+                                <option value='641'>Keputusan Gubernur</option>
+                                <option value='651'>Peraturan Gubernur</option>
+                                <option value='661'>Instruksi Gubernur</option>
+                                <option value='671'>Pengumuman Gubernur</option>
+                                <option value='681'>Surat Edaran Gubernur</option>
+                                <option value='691'>Surat Gubernur</option>
+                                <option value='701'>Keputusan Bupati/Walikota</option>
+                                <option value='711'>Peraturan Bupati/Walikota</option>
+                                <option value='721'>Instruksi Bupati/Walikota</option>
+                                <option value='731'>Pengumuman Bupati/Walikota</option>
+                                <option value='741'>Surat Edaran Bupati/Walikota</option>
+                                <option value='751'>Surat Bupati/Walikota</option>
+                                <option value='761'>Keputusan Direksi</option>
+                                <option value='771'>Peraturan Direksi</option>
+                                <option value='781'>Instruksi Direksi</option>
+                                <option value='791'>Pengumuman Direksi</option>
+                                <option value='801'>Surat Edaran Direksi</option>
+                                <option value='811'>Surat Direksi</option>
+                                <option value='821'>Keputusan Direktur</option>
+                                <option value='831'>Peraturan Direktur</option>
+                                <option value='841'>Instruksi Direktur</option>
+                                <option value='851'>Pengumuman Direktur</option>
+                                <option value='861'>Surat Edaran Direktur</option>
+                                <option value='871'>Surat Direktur</option>
+                              </select>
+                                </font>
+                            </td>
+                        </tr>
+                        </table>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Putusan</legend>
+                        <table style="margin-bottom:1.4em;width:100%;font-size:13px;">
+                        <tr>
+                            <td class="psearch"><font size=-1><b>Lembaga Peradilan</b></font></td>
+                            <td class="psearch">
+                                <font size=-1>
+                                <select name="lembaga_peradilan">
+                                        <option value=''>-- Pilih --</option>
+                                <option value='1'>Mahkamah Agung</option>
+                                <option value='1'>Mahkamah Konstitusi</option>
+                                <option value='9999'>P. Niaga Jakarta Pusat</option>
+                                <option value='30'>PN Jakarta Pusat</option>
+                                <option value='9999'>Komisi Pengawas Persaingan Usaha</option>
+                                <option value='30'>Pengadilan Negeri</option>
+                                <option value='20'>Pengadilan Tinggi</option>
+                                <option value='30'>Pengadilan Tata Usaha Negara</option>
+                                <option value='20'>Pengadilan Tinggi Tata Usaha Negara</option>
+                                <option value='30'>Pengadilan Agama</option>
+                                <option value='20'>Pengadilan Tinggi Agama</option>
+                                <option value='30'>Mahkamah Militer</option>
+                                <option value='20'>Mahkamah Militer Tinggi</option>
+                              </select>
+                                </font>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="psearch"><font size=-1><b>Hakim</b></font></td>
+                            <td class="psearch"><input type=text value="" name=hakim size=30></td>
+                        </tr>
+                        <tr>
+                            <td class="psearch"><font size=-1><b>Pihak</b></font></td>
+                            <td class="psearch"><input type=text value="" name=pihak size=30></td>
+                        </tr>
+                        <tr>
+                            <td class="psearch"><font size=-1><b>Pengacara</b></font></td>
+                            <td class="psearch"><input type=text value="" name=pengacara size=30></td>
+                        </tr>
+                        </table>
+                    </fieldset>
+                    </form>
+                </div>
+                <div class="clear">&nbsp;</div>
+            </div>
+            <div class="clear">&nbsp;</div>
+        </section>
+    </div>
+</div>
+<!-- End of Page Content -->

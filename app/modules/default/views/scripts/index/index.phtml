@@ -1,0 +1,19 @@
+<div id="formInPic">
+	<a href="/"><img src="<?=$this->cdn('images');?>/logo2.gif" width="250px"></a>
+</div>
+<form id="searchForm" method="POST" action="<?=ROOT_URL;?>/<?=$this->getLanguage();?>/dms/search/result" style="display:inline;"> 
+	<input type="text" id="keyword" name="keyword" class="half title" style="width:450px"> 
+	<input type="submit" value="Telusuri" class="btn btn-blue big">
+</form>
+<p>
+<?
+if ($this->getLanguage() == 'id') {
+?>
+<a href="<?=ROOT_URL;?>/en">hukumonline.com in English</a>
+<?
+} else {
+?>
+<a href="<?=ROOT_URL;?>/id">hukumonline Indonesia</a>
+<? } ?>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?=ROOT_URL;?>/<?=$this->getLanguage();?>/dms/search/advanced">Pencarian Lanjutan</a>
+</p>
