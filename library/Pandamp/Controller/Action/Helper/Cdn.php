@@ -4,10 +4,10 @@ class Pandamp_Controller_Action_Helper_Cdn extends Zend_View_Helper_Abstract
 {
     static $_types = array(
         'default' => '',
-        'images'  => 'http://static.hukumonline.n1/frontend/default/images',                
-        'styles'  => 'http://static.hukumonline.n1/frontend/default/css',
-        'scripts' => 'http://js.hukumonline.n1',
-        'rim' 	  => 'http://images.hukumonline.n1'
+        'images'  => 'http://static.hukumonline.com/frontend/default/images',                
+        'styles'  => 'http://static.hukumonline.com/frontend/default/css',
+        'scripts' => 'http://js.hukumonline.com',
+        'rim' 	  => 'http://images.hukumonline.com'
     );
     
     static function setTypes($types)        
