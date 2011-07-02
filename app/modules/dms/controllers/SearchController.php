@@ -117,15 +117,17 @@ class Dms_SearchController extends Zend_Controller_Action
                 $hits = $indexingEngine->find("fjkslfjdkfjls",0, 1);
             } else {
 
+            	/*
                 if ($category)
                 {
                     $querySolr = $query.' -profile:kutu_doc profile:'.$category;
                 }
                 else
                 {
+                */
                     //$querySolr = $query.' -profile:kutu_doc '.$this->_status.';publishedDate desc';
                     $querySolr = $query.' -profile:kutu_doc';
-                }
+                //}
 
                 $hits = $indexingEngine->find($querySolr,0, 1);
             }
