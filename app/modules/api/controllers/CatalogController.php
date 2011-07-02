@@ -105,7 +105,7 @@ class Api_CatalogController extends Zend_Controller_Action
 
                     }
                     else if ($row->profile == "article")
-                    {
+                    {die('f');
                     	if ($zl->getLanguage() == "id") {die('s');
 	                        if (isset($hits->highlighting->{$row->id}->title[0]))
 	                            $title = "<a href='".$remoteSearchIn['website']."/berita/baca/".$row->id."/".$row->shortTitle."' class='searchlink'><b>".$hits->highlighting->{$row->id}->title[0]."</b></a>";
