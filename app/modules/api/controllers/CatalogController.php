@@ -125,9 +125,9 @@ class Api_CatalogController extends Zend_Controller_Action
                     		
                     		
                     		
-	                        if (isset($hits->highlighting->{$row->id}->title[0])) {
+	                        if (isset($hits->highlighting->{$row->id}->title[0])) {die('q');
 	                            $title = "<a href='".$remoteSearchIn['website']."/pages/".$row->id.$st."' class='searchlink'><b>".$hits->highlighting->{$row->id}->title[0]."</b></a>";
-	                        } else {
+	                        } else {die('4');
 	                            $title = "<a href='".$remoteSearchEn['website']."/pages/".$row->id.$st."' class='searchlink'><b>$row->title</b></a>";	
 	                        }
                     		
