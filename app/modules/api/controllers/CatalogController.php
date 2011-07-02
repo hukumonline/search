@@ -106,7 +106,7 @@ class Api_CatalogController extends Zend_Controller_Action
                     }
                     else if ($row->profile == "article")
                     {
-                    	if ($zl->getLanguage() == "id") {die('s');
+                    	if ($zl->getLanguage() == "id") {
 	                        if (isset($hits->highlighting->{$row->id}->title[0]))
 	                            $title = "<a href='".$remoteSearchIn['website']."/berita/baca/".$row->id."/".$row->shortTitle."' class='searchlink'><b>".$hits->highlighting->{$row->id}->title[0]."</b></a>";
 	                        else
@@ -125,9 +125,9 @@ class Api_CatalogController extends Zend_Controller_Action
                     		
                     		
                     		
-	                        if (isset($hits->highlighting->{$row->id}->title[0])) {die('q');
+	                        if (isset($hits->highlighting->{$row->id}->title[0])) {
 	                            $title = "<a href='".$remoteSearchIn['website']."/pages/".$row->id.$st."' class='searchlink'><b>".$hits->highlighting->{$row->id}->title[0]."</b></a>";
-	                        } else {die('4');
+	                        } else {
 	                            $title = "<a href='".$remoteSearchEn['website']."/pages/".$row->id.$st."' class='searchlink'><b>$row->title</b></a>";	
 	                        }
                     		
