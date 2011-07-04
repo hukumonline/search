@@ -14,7 +14,25 @@ class Dms_SearchController extends Zend_Controller_Action
         	$this->_status = "status:99";
         else 
         	$this->_status = "status:1";
-        
+
+        	
+        	
+		// [TODO] else: check if user has access to admin page and status website is online
+		$tblSetting = new App_Model_Db_Table_Setting();
+		$rowset = $tblSetting->find(1)->current();
+		
+		if ($rowset)
+		{
+			if ($rowset->status == 1)
+			{
+				// it means that user offline other than admin
+				$this->_redirect(ROOT_URL.'/'.$zl->getLanguage().'/default/offline/temporary');
+			}
+			else 
+			{
+				return;
+			}
+		}
 	}
 	function advancedAction()
 	{
@@ -117,17 +135,15 @@ class Dms_SearchController extends Zend_Controller_Action
                 $hits = $indexingEngine->find("fjkslfjdkfjls",0, 1);
             } else {
 
-            	/*
                 if ($category)
                 {
                     $querySolr = $query.' -profile:kutu_doc profile:'.$category;
                 }
                 else
                 {
-                */
                     //$querySolr = $query.' -profile:kutu_doc '.$this->_status.';publishedDate desc';
                     $querySolr = $query.' -profile:kutu_doc';
-                //}
+                }
 
                 $hits = $indexingEngine->find($querySolr,0, 1);
             }
